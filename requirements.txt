@@ -1,0 +1,9 @@
+datasets
+fastapi==0.115.5
+firebase_admin==6.5.0
+numpy
+pandas==2.2.3
+uvicorn[standard]
+wandb==0.18.7
+gunicorn
+python-multipart
