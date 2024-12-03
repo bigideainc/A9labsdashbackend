@@ -4,7 +4,6 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse,JSONResponse
 from firebase_admin import firestore, credentials
 import firebase_admin
-from utils.creds import FIREBASE_CREDS, HF_TOKEN
 from datasets import DatasetDict
 import pandas as pd
 import os
@@ -29,10 +28,11 @@ app.add_middleware(
 
 # W&B API Key
 WANDB_API_KEY = "650810c567842db08fc2707d0668dc568cad00b4"
+HF_TOKEN="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"
 os.environ['WANDB_API_KEY'] = WANDB_API_KEY
 os.environ["HF_TOKEN"] = HF_TOKEN
 if not firebase_admin._apps:
-    cred = credentials.Certificate(FIREBASE_CREDS)
+    cred = credentials.Certificate("creds.json")
     firebase_admin.initialize_app(cred)
 db = firestore.client()
 
@@ -385,21 +385,32 @@ async def open_jobs_websocket(websocket: WebSocket):
             print(f"Error closing WebSocket: {close_e}")
 
 # Endpoint: Update a job
-@app.put("/jobs/{job_id}")
-async def update_job(job_id: str, status: str = Form(...)):
+@app.post("/jobs/update")
+async def update_job(job_id: str = Form(...), status: str = Form(...)):
     """
-    Update the status of a job.
+    Update the status of a job using job_id as a field in Firestore documents.
     """
     try:
-        # Fetch job from Firestore
-        job_ref = db.collection("a9jobs").document(job_id)
-        job = job_ref.get()
-        if not job.exists:
-            raise HTTPException(status_code=404, detail="Job not found.")
-        job_ref.update({"status": status})
-        return JSONResponse(content={"message": f"Job {job_id} updated successfully."}, status_code=200)
-    
+        # Query Firestore to find the document with the matching job_id field
+        jobs_collection = db.collection("a9jobs")
+        query = jobs_collection.where("job_id", "==", job_id).limit(1)
+        docs = query.stream()
+
+        # Extract the document to update
+        job_doc = next(docs, None)
+        if not job_doc:
+            raise HTTPException(status_code=404, detail=f"Job with job_id {job_id} not found.")
+
+        # Update the status field in the document
+        job_doc.reference.update({"status": status})
+
+        return JSONResponse(
+            content={"message": f"Job {job_id} status updated successfully."},
+            status_code=200,
+        )
+
     except Exception as e:
+        print(f"Error updating job with job_id {job_id}: {e}")
         raise HTTPException(status_code=500, detail=f"Error updating job: {str(e)}")
 
 # Endpoint: Delete a job
@@ -422,4 +433,4 @@ async def delete_job(job_id: str):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True, log_level="error")
+    uvicorn.run("main:app", host="0.0.0.0", port=8080, reload=True, log_level="error")

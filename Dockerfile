@@ -14,6 +14,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy application code
 COPY . .
 
+COPY creds.json .
+
 # Create non-root user
 RUN adduser --system --group app_user
 RUN chown -R app_user:app_user /app
