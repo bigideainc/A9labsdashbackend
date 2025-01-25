@@ -1,5 +1,6 @@
+fastapi
+uvicorn
 datasets==2.19.0
-fastapi==0.115.7
 firebase_admin==6.5.0
 huggingface_hub==0.23.5
 paramiko
@@ -7,7 +8,7 @@ Requests==2.32.3
 transformers==4.44.0
 numpy
 pandas==2.2.3
-uvicorn[standard]
+uvicorn
 wandb==0.18.7
 gunicorn
 python-multipart
