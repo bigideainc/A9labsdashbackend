@@ -1,7 +1,6 @@
 import pandas as pd
 from datasets import Dataset, DatasetDict
-import re
-
+import math
 
 def transform_csv_to_hf_dataset(csv_path, repo_name, seed=42, split_ratio=0.2):
     """
@@ -51,6 +50,39 @@ def transform_csv_to_hf_dataset(csv_path, repo_name, seed=42, split_ratio=0.2):
 
     # Return the repository name
     return repo_name
+
+def calculate_system_requirements(dataset_size_mb):
+    """
+    Calculate minimum and recommended system specifications based on dataset size.
+    """
+    # Constants for the heuristic calculation (these values can be tuned based on empirical data)
+    gpu_scaling_factor = 0.1  # GPU in TFLOPS per GB of dataset
+    vram_scaling_factor = 0.5  # VRAM in GB per GB of dataset
+    ram_scaling_factor = 1.0  # RAM in GB per GB of dataset
+    storage_scaling_factor = 2.0  # Storage in GB per GB of dataset
+    network_scaling_factor = 10.0  # Network in Mbps per GB of dataset
+
+    # Minimum requirements
+    minimum_specs = {
+        "GPU": f"{max(1, math.ceil(gpu_scaling_factor * dataset_size_mb / 1024))} TFLOPS",
+        "VRAM": f"{max(1, math.ceil(vram_scaling_factor * dataset_size_mb / 1024))} GB",
+        "RAM": f"{max(2, math.ceil(ram_scaling_factor * dataset_size_mb / 1024))} GB",
+        "Storage": f"{math.ceil(storage_scaling_factor * dataset_size_mb / 1024)} GB",
+        "Network": f"{math.ceil(network_scaling_factor * dataset_size_mb)} Mbps",
+    }
+
+    # Recommended requirements
+    recommended_specs = {
+        "GPU": f"{max(4, math.ceil(2 * gpu_scaling_factor * dataset_size_mb / 1024))} TFLOPS",
+        "VRAM": f"{max(8, math.ceil(2 * vram_scaling_factor * dataset_size_mb / 1024))} GB",
+        "RAM": f"{max(8, math.ceil(2 * ram_scaling_factor * dataset_size_mb / 1024))} GB",
+        "Storage": f"{math.ceil(3 * storage_scaling_factor * dataset_size_mb / 1024)} GB",
+        "Network": f"{math.ceil(2 * network_scaling_factor * dataset_size_mb)} Mbps",
+    }
+
+    return {"minimum": minimum_specs, "recommended": recommended_specs}
+
+
 
 
 

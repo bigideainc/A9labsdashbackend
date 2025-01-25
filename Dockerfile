@@ -2,14 +2,19 @@ FROM python:3.9-slim
 
 WORKDIR /app
 
+# Install system dependencies (including OpenSSH client)
+RUN apt-get update && apt-get install -y openssh-client && rm -rf /var/lib/apt/lists/*
 
+# Install Python dependencies, including PyTorch for model loading
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt 
 
-COPY requirements.txt .
+# Set Hugging Face cache directory
+ENV HF_HOME=/app/huggingface_cache
+RUN mkdir -p $HF_HOME && chmod -R 777 $HF_HOME
 
-# Install Python dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+# Ensure user has a valid home directory
+ENV HOME=/app
 
 # Copy application code
 COPY . .
@@ -24,7 +29,7 @@ RUN chown -R app_user:app_user /app
 USER app_user
 
 # Use environment variable for port binding
-ENV PORT=8000
-
+ENV PORT=8890
+ENV NGROK_TOKEN=""
 # Command to run the application
-CMD exec gunicorn --bind :$PORT --workers 1 --worker-class uvicorn.workers.UvicornWorker --threads 8 main:app
+CMD ["python", "main.py"]
