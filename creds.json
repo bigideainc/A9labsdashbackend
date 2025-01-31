@@ -1,13 +1,2 @@
 {
-  "type": "service_account",
-  "project_id": "polaris-subnet-jobs-123",
-  "private_key_id": "0d15d75431b795dba222a89b3e9238420cf03536",
-  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC88V72lvH8BlXw\nLaAXV5mj1RkSw/IvLHuOmb52hBET4nCFj4hDBGJ2akZd4XfBzj6ApVCPmtbCmfg8\nKwzjWd1oasQDLsdXPgO3bdSkIRm9EKorm5jThc935QrbHizyeyqjOlujDkoENesn\nSQ5ytA0bqdk75bi4a0nxh91Av1kpXLmO5v1doDlJx7NqX5Uge98tLoJnR1LgcIYQ\nKwk33AKvfA7JJ+btTvx8AlDNtR/ddeSalYCAaL6I5XftJE0ZLjPZfDVCGQLNXquL\n7H5TPHcTNckpezbdVm/ujUzEKpahfTwjgzUmcDuEigrTxWNBdGPfSX0Pa+6eUOmf\nyoGV48TtAgMBAAECggEAKkgxoilBWc7pKGhtbQvTfBBSHhrvdZMUy2KodskzMSn5\nWEo4ihbPGgTKXnP4YsyOvCdCkgBqkv31yTExHyebHqTV3Ih5X5KnLkNL1Lb7lY3H\nJx8Y4i0Nspz1AvgLwu/BKOoEW8b01WBjkVUOAKk+TbSCwp6z6cFIuN5YqwanI1QU\nN0o0WD46A5t2WfBPY7KVJ2InzrWA2UYHSUPrwT0o/lQgiuWXrND0aEzfONX9JUhX\nKrpLONzX7QWYYIq/J4SOBSi9F7hksqt4HnT1IM0j9hbDr9cRXm3exi/w+DyvZ08l\nXBArfMLfG6NxJtuBDi5Hcsng7UR9MnVxFEHDLzmNWQKBgQDn+8exK1vzJN800NDb\nH8HS3qSBqZvwbPOGQjWfXg0rwAqfjlCo6cdrKUrm/F9BPJ+XVme3kHNAJAve0MHV\n4knASVxkKyVrpu9ibBqvpcA4dOR4HJHpzKbhjJ2BXNVAodjsEo1NmL5buqKPw9WQ\njNfQkiQ71yKeEh1sfIg1d91V2wKBgQDQgOQ8Mw9GbSXDdELpjRFzFZyf2ULMxoaF\nJAb9m4Lnoa1uRPZoUYJPSP0sWFlKjMW/DnXyN2uDUZZwwHH4qJn+uNEfqmNm64Co\nSsabtlkThGa4g9+t83qTX7Ce9ZDCmxbpr+HWtdX5XotWb4uzZWkxf3ar4wtx3u2j\n/6KpGiMe1wKBgDSURpCLaU3Uv5py8cOYkQ/AUrzoumVl7FQz0X+Li6Ss5DuBwBpo\n0kAhnc54yQY6PVnJxbw/Sz/wa5hW7HgTz+97MSuq89JQhdVi9zF0efrR0669mvzI\n29InUtOtPNBnXokzMz+xLQQRayL2mgMnSQsG9JtziW8WYADkwOKNhmcdAoGALu+k\n8UxJNwBhDOPCIFMqR27pCC7fU7upEpWuoS59xGjn4rfRhGA85l425+GnkBmqdjzq\nHjGNmU0ngZBA18oUiHvQT8GKiOOg3cGfffQJj1Qxz32YP89cm4ph9xaulLBW8xot\ny6i5V16KHVYU67h7erIH49/DdsnJUy67zjddCpcCgYEAmA4OWUIQ0hhuJ2MSufv+\nIW9SC2g8XtCKIjXOv5Y3smH2nLnu/KjRct+ReGtGLwEpdeg69yeSEWY0uCzVb7PT\nfxYwqZf7DajfWFm6PIg5iLnZmXK5baNLvxeZz0DYzvj5g6Cki3sabobAaVjZoID9\nUV8fyki659jmZDFAfIqRFvg=\n-----END PRIVATE KEY-----\n",
-  "client_email": "firebase-adminsdk-ubgfd@polaris-subnet-jobs-123.iam.gserviceaccount.com",
-  "client_id": "111436787384860070648",
-  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-  "token_uri": "https://oauth2.googleapis.com/token",
-  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-ubgfd%40polaris-subnet-jobs-123.iam.gserviceaccount.com",
-  "universe_domain": "googleapis.com"
 }

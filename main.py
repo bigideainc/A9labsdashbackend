@@ -796,7 +796,7 @@ async def deploy_model(
 
         # Run Docker Container
         docker_command = (
-            f"docker run -d -t "
+            f"docker run --gpus all -d -i -t "
             f"-e PORT={port} "
             f"-e ENDPOINT={deployment_name} "
             f"-e MODEL_={model} "

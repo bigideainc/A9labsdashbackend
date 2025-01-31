@@ -30,6 +30,5 @@ USER app_user
 
 # Use environment variable for port binding
 ENV PORT=8890
-ENV NGROK_TOKEN=""
 # Command to run the application
-CMD ["python", "main.py"]
+CMD ["uvicorn", "main:app", "--reload", "--host", "0.0.0.0", "--port", "8890"]
